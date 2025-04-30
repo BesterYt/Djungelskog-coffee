@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Pay menu</title>
+  <style>
+    body { font-family: sans-serif; background: #222; color: #eee; }
+    .login, .orders { max-width: 400px; margin: 20px auto; }
+    .orders .order { display: flex; justify-content: space-between; padding: 8px; border-bottom: 1px solid #444; }
+    button { padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="login">
+    <input id="pwd" type="password" placeholder="Введите пароль" />
+    <button id="loginBtn">Войти</button>
+  </div>
+  <div class="orders" style="display:none;">
+    <h2>Заказы</h2>
+    <div id="list"></div>
+  </div>
+
+  <script>
+    const ADMIN_PWD = '1555';
+    document.getElementById('loginBtn').onclick = () => {
+      if (document.getElementById('pwd').value === ADMIN_PWD) {
+        document.querySelector('.login').style.display = 'none';
+        document.querySelector('.orders').style.display = '';
+        load();
+        setInterval(load, 5000);
+      } else alert('Неверный пароль');
+    };
+
+    async function load() {
+      const res = await fetch('/orders');
+      const orders = await res.json();
+      const list = document.getElementById('list');
+      list.innerHTML = '';
+      orders.forEach(o => {
+        const div = document.createElement('div');
+        div.className = 'order';
+        div.innerHTML = `<span>#${o.id} — ${o.name} — ${o.paid ? 'Оплачен' : 'Не оплачен'}</span>`;
+        if (!o.paid) {
+          const btn = document.createElement('button');
+          btn.textContent = 'Принять оплату';
+          btn.onclick = async () => {
+            await fetch('/pay', {
+              method: 'POST',
+              headers: {'Content-Type':'application/json'},
+              body: JSON.stringify({ id: o.id, password: ADMIN_PWD })
+            });
+            load();
+          };
+          div.appendChild(btn);
+        }
+        list.appendChild(div);
+      });
+    }
+  </script>
+</body>
+</html>
