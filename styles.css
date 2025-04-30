@@ -1,60 +1,78 @@
+/* Общие стили */
 body {
-  font-family: sans-serif;
-  background-color: #ffffff;
-  color: #222;
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #1e1e1e;
+  color: #ffffff;
 }
 
-header {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  padding: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-radius: 0 0 16px 16px;
+/* Центрированный контейнер */
+.container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-nav a {
-  margin: 0 1rem;
-  text-decoration: none;
-  font-weight: bold;
-  color: #6b4c3b;
+/* Заголовки */
+h2, h3 {
+  text-align: center;
+  color: #ffffff;
 }
 
-main {
-  padding: 2rem;
-  max-width: 600px;
-  margin: auto;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  margin-top: 2rem;
-}
-
-button {
-  background-color: #6b4c3b;
-  color: white;
-  padding: 0.6rem 1.2rem;
+/* Инпуты, селекты и кнопки */
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
   border: none;
   border-radius: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Инпуты и селекты */
+input, select {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+/* Кнопка */
+button {
+  background: #ff5555;
+  color: white;
+  font-weight: bold;
   cursor: pointer;
-  margin-top: 1rem;
+  transition: background 0.3s;
 }
 
 button:hover {
-  background-color: #5a3d2c;
+  background: #ff3333;
 }
 
-input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
+/* Секции заказов */
+.section {
+  margin: 20px;
+}
+
+.order {
+  background: rgba(255,255,255,0.07);
+  padding: 10px;
+  margin: 10px 0;
   border-radius: 12px;
-  width: 100%;
-  margin-bottom: 1rem;
 }
 
-.hidden {
-  display: none;
+/* Кнопка в админке */
+.order button {
+  background: #4caf50;
+  color: white;
+  padding: 6px 12px;
+  margin-left: 10px;
+}
+
+.order button:hover {
+  background: #43a047;
 }
