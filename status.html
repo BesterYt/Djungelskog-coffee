@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Готовность</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="status.js"></script>
+</head>
+<body>
+  <header>
+    <img src="YOUR_IMAGE_URL" alt="Логотип" style="height:50px; border-radius:16px;">
+    <nav>
+      <a href="order.html">Заказать</a>
+      <a href="status.html">Готовность</a>
+      <a href="pay.html">Pay Menu</a>
+    </nav>
+  </header>
+  <main>
+    <h2>Проверить статус заказа</h2>
+    <input id="status-id" placeholder="Введите номер заказа" />
+    <button onclick="checkStatus()">Проверить</button>
+    <p id="status-result"></p>
+  </main>
+</body>
+</html>
