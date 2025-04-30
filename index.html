@@ -1,22 +1,118 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Кофейня</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Заказ кофе</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: url('https://sdmntprukwest.oaiusercontent.com/files/00000000-28a0-6243-bef5-8cb7e637ea5b/raw?se=2025-04-30T13%3A39%3A39Z&sp=r&sv=2024-08-04&sr=b&scid=d3e44d56-ff2d-5ce2-8fe8-759e31c31b41&skoid=06e05d6f-bdd9-4a88-a7ec-2c0a779a08ca&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-04-30T05%3A05%3A54Z&ske=2025-05-01T05%3A05%3A54Z&sks=b&skv=2024-08-04&sig=rnNabUo7y2lgBaIw4Ma97abjvfTSpTf%2BZb8Szna0AWA%3D') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      display: flex;
+    }
+    nav {
+      width: 180px;
+      background: white;
+      padding: 20px;
+      border-radius: 0 15px 15px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    nav button {
+      background-color: #6b3e26;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    main {
+      flex-grow: 1;
+      padding: 40px;
+      background-color: white;
+      border-radius: 20px 0 0 20px;
+      margin-left: 20px;
+      min-height: 90vh;
+    }
+    .hidden { display: none; }
+    .option-btn {
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 12px;
+      background-color: #6b3e26;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    input {
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <img src="YOUR_IMAGE_URL" alt="Логотип" style="height:50px; border-radius:16px;">
+  <div class="container">
     <nav>
-      <a href="order.html">Заказать</a>
-      <a href="status.html">Готовность</a>
-      <a href="pay.html">Pay Menu</a>
+      <button onclick="nextStep('step-volume')">Заказать</button>
+      <button onclick="nextStep('step-status')">Готовность</button>
+      <button onclick="nextStep('step-pay')">Pay menu</button>
     </nav>
-  </header>
-  <main>
-    <h1>Добро пожаловать в кофейню!</h1>
-    <p>Выберите действие в меню сверху.</p>
-  </main>
+
+    <main>
+      <!-- Шаг 1: Объем -->
+      <div id="step-volume">
+        <h2>Выберите объём:</h2>
+        <button class="option-btn" onclick="selectVolume('100мл')">100мл</button>
+        <button class="option-btn" onclick="selectVolume('140мл')">140мл</button>
+        <button class="option-btn" onclick="selectVolume('150мл')">150мл</button>
+      </div>
+
+      <!-- Шаг 2: Кофе-арт + имя -->
+      <div id="step-art" class="hidden">
+        <h2>Выберите кофе-арт:</h2>
+        <button class="option-btn" onclick="selectArt('Ёлка')">Ёлка</button>
+        <button class="option-btn" onclick="selectArt('Панда')">Панда</button>
+        <button class="option-btn" onclick="selectArt('Без арта')">Без арта</button>
+        <div>
+          <input id="name-input" placeholder="Введите ваше имя" />
+        </div>
+      </div>
+
+      <!-- Шаг 3: Сводка -->
+      <div id="step-summary" class="hidden">
+        <h2>Ваш заказ:</h2>
+        <p>Имя: <span id="sum-name"></span></p>
+        <p>Объём: <span id="sum-volume"></span></p>
+        <p>Арт: <span id="sum-art"></span></p>
+        <p>Номер заказа: <span id="order-id"></span></p>
+      </div>
+
+      <!-- Готовность -->
+      <div id="step-status" class="hidden">
+        <h2>Проверить статус:</h2>
+        <input id="status-id" placeholder="Введите ID заказа" />
+        <button onclick="checkStatus()">Проверить</button>
+        <p id="status-result"></p>
+      </div>
+
+      <!-- Pay menu -->
+      <div id="step-pay" class="hidden">
+        <h2>Подтвердить оплату</h2>
+        <input id="order-id" placeholder="Введите ID заказа" />
+        <input id="code-input" placeholder="Введите код (1555)" />
+        <button onclick="confirmPay()">Подтвердить</button>
+        <p id="pay-result"></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
