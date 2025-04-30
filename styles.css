@@ -1,78 +1,42 @@
-/* Общие стили */
+/* фон всей страницы — ваша картинка №2 */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: #1e1e1e;
-  color: #ffffff;
+  background: #ddd url('bg-coffee.jpg') no-repeat center/cover;
+  color: #333;
 }
 
-/* Центрированный контейнер */
+/* полупрозрачная бело-серая панель вокруг форм */
 .container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 30px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
-/* Заголовки */
-h2, h3 {
-  text-align: center;
-  color: #ffffff;
+/* верхнее меню */
+nav.top-menu {
+  display: flex;
+  background: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 20px;
 }
 
-/* Инпуты, селекты и кнопки */
-input, select, button {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  box-sizing: border-box;
-}
-
-/* Инпуты и селекты */
-input, select {
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-/* Кнопка */
-button {
-  background: #ff5555;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background: #ff3333;
-}
-
-/* Секции заказов */
-.section {
-  margin: 20px;
-}
-
-.order {
-  background: rgba(255,255,255,0.07);
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 12px;
-}
-
-/* Кнопка в админке */
-.order button {
-  background: #4caf50;
-  color: white;
+/* ссылки меню */
+nav.top-menu a {
+  color: #555;
+  text-decoration: none;
+  margin-right: 20px;
   padding: 6px 12px;
-  margin-left: 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
-.order button:hover {
-  background: #43a047;
+/* активный пункт */
+nav.top-menu a.active,
+nav.top-menu a:hover {
+  background: #fff;
+  color: #222;
 }
+
+/* чтобы контент не прыгал под меню */
+body { padding-top: 50px; }
