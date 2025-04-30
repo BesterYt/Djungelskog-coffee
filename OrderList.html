@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Список заказов</title>
+  <style>
+    body { font-family: sans-serif; background: #fafafa; color: #333; }
+    h2 { text-align: center; }
+    .section { margin: 20px; }
+    .order { padding: 10px; border-bottom: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h2>Ваши заказы</h2>
+  <div class="section">
+    <h3>Готовится</h3>
+    <div id="preparing"></div>
+  </div>
+  <div class="section">
+    <h3>Готово</h3>
+    <div id="ready"></div>
+  </div>
+
+  <script>
+    async function load() {
+      const res = await fetch('/orders');
+      const orders = await res.json();
+      const prep = document.getElementById('preparing');
+      const ready = document.getElementById('ready');
+      prep.innerHTML = ''; ready.innerHTML = '';
+      orders.forEach(o => {
+        const div = document.createElement('div');
+        div.className = 'order';
+        div.textContent = `#${o.id} — ${o.name}, ${o.volume}, ${o.art} — ${o.paid ? 'Оплачен' : 'Не оплачен'}`;
+        if (o.paid) ready.appendChild(div);
+        else prep.appendChild(div);
+      });
+    }
+    load();
+    setInterval(load, 5000);
+  </script>
+</body>
+</html>
